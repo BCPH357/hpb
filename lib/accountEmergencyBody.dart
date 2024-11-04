@@ -144,6 +144,7 @@ class DeleteAlertDialog extends StatelessWidget {
   }
 }
 
+//選擇國碼widget
 class CountryCodeDropdown extends StatefulWidget {
   @override
   _CountryCodeDropdownState createState() => _CountryCodeDropdownState();

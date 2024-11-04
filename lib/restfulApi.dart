@@ -10,6 +10,7 @@ import 'package:intl/intl.dart';
 String ip = 'http://20.78.56.130:3000/';
 String apIp = "http://192.168.4.1";
 
+
 String getFormattedTodayDate() {
   // 获取当前日期
   DateTime now = DateTime.now();
@@ -18,13 +19,14 @@ String getFormattedTodayDate() {
   // 使用 formatter 来格式化当前日期
   return formatter.format(now);
 }
-
+//格式化当前日期
 String formatDate(String dateTimeStr) {
   DateTime dateTime = DateTime.parse(dateTimeStr);
   DateFormat formatter = DateFormat('yyyy-MM-dd');
   return formatter.format(dateTime);
 }
 
+//api2.1 2.2
 Future<String> getDeviceApiInfo(DeviceInfo deviceInfo) async {
   final response = await http.get(Uri.parse('${apIp}/Info/Device'));
 
@@ -41,6 +43,7 @@ Future<String> getDeviceApiInfo(DeviceInfo deviceInfo) async {
   }
 }
 
+//api2.3 2.4
 Future<String> configureDevice(
     String ssid, String password, String deviceId) async {
   final url = Uri.parse('${apIp}/Settings/Device');
@@ -54,8 +57,7 @@ Future<String> configureDevice(
     'ntpServer': "time.google.com",
     // 'otaVersionUrl': otaVersionUrl
   });
-  print("__________body__________");
-  print("body: $body");
+
 
   try {
     final response = await http.post(url, headers: headers, body: body);
@@ -73,6 +75,7 @@ Future<String> configureDevice(
   }
 }
 
+//api2.5 2.6
 Future<String> switchDeviceMode(
     String deviceId, String mode, DeviceInfo deviceInfo) async {
   // Construct the URL with the desired mode
@@ -103,6 +106,7 @@ Future<String> switchDeviceMode(
   }
 }
 
+//Send Registration Email
 Future<String> sendRegistrationEmail(String email) async {
   final url = Uri.parse('${ip}api/v1/auth/register/request-email');
   final headers = {'Content-Type': 'application/json'};
@@ -130,6 +134,7 @@ Future<String> sendRegistrationEmail(String email) async {
   }
 }
 
+//Verify Registration Code
 Future<String> verifyRegistrationCode(String email, String verifyCode) async {
   final url = Uri.parse('${ip}api/v1/auth/register/verify');
   final headers = {'Content-Type': 'application/json'};
@@ -161,6 +166,7 @@ Future<String> verifyRegistrationCode(String email, String verifyCode) async {
   }
 }
 
+//Register
 Future<String> registerUser(
     String username, String password, String email, String verifyCode) async {
   final url = Uri.parse('${ip}api/v1/auth/register');
@@ -205,6 +211,7 @@ Future<String> registerUser(
   }
 }
 
+//Send Password Reset Email
 Future<String> sendPasswordResetEmail(String email) async {
   final url = Uri.parse('${ip}api/v1/auth/reset-password/request-email');
   final headers = {'Content-Type': 'application/json'};
@@ -240,6 +247,7 @@ Future<String> sendPasswordResetEmail(String email) async {
   }
 }
 
+//Verify Reset Password Code
 Future<String> verifyResetPasswordCode(String email, String verifyCode) async {
   final url = Uri.parse('${ip}api/v1/auth/reset-password/verify');
   final headers = {'Content-Type': 'application/json'};
@@ -275,6 +283,7 @@ Future<String> verifyResetPasswordCode(String email, String verifyCode) async {
   }
 }
 
+//Reset Password
 Future<String> resetPassword(
     String email, String verifyCode, String newPassword) async {
   final url = Uri.parse('${ip}api/v1/auth/reset-password');
@@ -313,6 +322,7 @@ Future<String> resetPassword(
   }
 }
 
+//Login
 Future<String> loginUser(String email, String password) async {
   final url = Uri.parse('${ip}api/v1/auth/login');
   final headers = {'Content-Type': 'application/json'};
@@ -354,6 +364,7 @@ Future<String> loginUser(String email, String password) async {
   }
 }
 
+//Logout
 Future<String> logout() async {
   // 從本地存儲獲取 token
   String? token = await getToken();
@@ -398,6 +409,7 @@ Future<String> logout() async {
   }
 }
 
+//Get User
 Future<String> getUserInfo(PeopleInfo peopleInfo) async {
   final url = Uri.parse('${ip}api/v1/user');
   String? token = await getToken(); // 假設 getToken() 是一個從本地存儲獲取 JWT token 的函數
@@ -443,6 +455,7 @@ Future<String> getUserInfo(PeopleInfo peopleInfo) async {
   }
 }
 
+  //Get Care Recipient
 Future<String> getCareRecipient(PeopleInfo peopleInfo) async {
   // 从本地存储获取JWT token
   String? token = await getToken(); // 假设getToken()是一个从本地存储获取JWT token的函数
@@ -495,6 +508,7 @@ Future<String> getCareRecipient(PeopleInfo peopleInfo) async {
   }
 }
 
+//Update User
 Future<String> updateUser(
     {String name = '',
     String email = '',
@@ -561,6 +575,7 @@ Future<String> updateUser(
   }
 }
 
+//Add Emergency Contact
 Future<String> addEmergencyContact({
   required String name,
   required String countryCode,
@@ -622,6 +637,7 @@ Future<String> addEmergencyContact({
   }
 }
 
+//Update Care Recipient
 Future<String> updateCareRecipient({
   required String name,
   required Map<String, bool> medicalHistory,
@@ -681,6 +697,7 @@ Future<String> updateCareRecipient({
   }
 }
 
+//Get All User Devices
 Future<String> getAllUserDevices(DeviceInfo deviceInfo) async {
   // 從本地存儲獲取 token
   String? token = await getToken();
@@ -730,6 +747,7 @@ Future<String> getAllUserDevices(DeviceInfo deviceInfo) async {
   }
 }
 
+//Add User Device
 Future<String> addUserDevice(String macAddress, String deviceName) async {
   // 從本地存儲獲取 token
   String? token = await getToken();
@@ -783,6 +801,7 @@ Future<String> addUserDevice(String macAddress, String deviceName) async {
   }
 }
 
+//Update Device Name
 Future<String> updateDeviceName(
     String deviceId, String newDeviceName, DeviceInfo deviceInfo) async {
   // 從本地存儲獲取 token
@@ -835,6 +854,7 @@ Future<String> updateDeviceName(
   }
 }
 
+//Get Device Settings
 Future<String> getDeviceSettings(
     String deviceId, DeviceInfo deviceInfo, int index) async {
   // 從本地存儲獲取 token
@@ -888,6 +908,7 @@ Future<String> getDeviceSettings(
   }
 }
 
+//Set Device Light
 Future<String> setDeviceLight(String deviceId, int mode, levels) async {
   // 從本地存儲獲取 token
   String? token = await getToken();
@@ -945,6 +966,7 @@ Future<String> setDeviceLight(String deviceId, int mode, levels) async {
   }
 }
 
+//Set Device Light Color
 Future<String> setDeviceLightColor(String deviceId, int color) async {
   // 從本地存儲獲取 token
   String? token = await getToken();
@@ -997,6 +1019,7 @@ Future<String> setDeviceLightColor(String deviceId, int color) async {
   }
 }
 
+//Set Device Speaker Volume
 Future<String> setDeviceSpeakerVolume(String deviceId, int volumeValue) async {
   // 從本地存儲獲取 token
   String? token = await getToken();
@@ -1049,6 +1072,7 @@ Future<String> setDeviceSpeakerVolume(String deviceId, int volumeValue) async {
   }
 }
 
+//Set Device Speaker Language
 Future<String> setDeviceSpeakerLanguage(String deviceId, int mode) async {
   // 從本地存儲獲取 token
   String? token = await getToken();
@@ -1101,6 +1125,7 @@ Future<String> setDeviceSpeakerLanguage(String deviceId, int mode) async {
   }
 }
 
+//Reset Device
 Future<String> resetDevice(String deviceId) async {
   // 從本地存儲獲取 token
   String? token = await getToken();
@@ -1145,6 +1170,7 @@ Future<String> resetDevice(String deviceId) async {
   }
 }
 
+//Restart Device
 Future<String> restartDevice(String deviceId) async {
   // 從本地存儲獲取 token
   String? token = await getToken();
@@ -1189,6 +1215,7 @@ Future<String> restartDevice(String deviceId) async {
   }
 }
 
+//Set Device Sentry Mode
 Future<String> setDeviceSentryMode(String deviceId, int sentryMode) async {
   // 從本地存儲獲取 token
   String? token = await getToken();
@@ -1237,6 +1264,7 @@ Future<String> setDeviceSentryMode(String deviceId, int sentryMode) async {
   }
 }
 
+//Update Boundary Setting
 Future<String> updateBoundarySetting(String deviceId, int status) async {
   // Retrieve the token from local storage
   String? token = await getToken();
@@ -1284,6 +1312,7 @@ Future<String> updateBoundarySetting(String deviceId, int status) async {
   }
 }
 
+//Start Boundary Setting
 Future<String> startBoundarySetting(String deviceId) async {
   // Retrieve the token from local storage
   String? token = await getToken();
@@ -1328,6 +1357,7 @@ Future<String> startBoundarySetting(String deviceId) async {
   }
 }
 
+//Stop Boundary Setting
 Future<String> stopBoundarySetting(String deviceId) async {
   // Retrieve the token from local storage
   String? token = await getToken();
@@ -1372,7 +1402,8 @@ Future<String> stopBoundarySetting(String deviceId) async {
   }
 }
 
-Future<String> setBedEdgeBoundary(
+//Set Bed Edge Boundary
+  Future<String> setBedEdgeBoundary(
     String deviceId, Map<String, dynamic> boundaryParameters) async {
   // 從本地存儲獲取 token
   String? token = await getToken();
@@ -1420,6 +1451,7 @@ Future<String> setBedEdgeBoundary(
   }
 }
 
+//Get Boundary Image
 Future<String> getBoundaryImage(
     String deviceId, DeviceInfo deviceInfo, width, height) async {
   // 從本地存儲獲取 token
@@ -1461,6 +1493,7 @@ Future<String> getBoundaryImage(
   }
 }
 
+//Get Emergency Warning Logs
 Future<String> getEmergencyWarningLogs(String date, Emergency emergency) async {
   final url = Uri.parse('${ip}api/v1/data/warning-logs/emergency?date=$date');
   String? token = await getToken(); // 假設 getToken() 是一個從本地存儲獲取 JWT token 的函數
@@ -1505,6 +1538,7 @@ Future<String> getEmergencyWarningLogs(String date, Emergency emergency) async {
   }
 }
 
+//Get Event Warning Logs
 Future<String> getEventWarningLogs(String date, Emergency emergency) async {
   final url = Uri.parse('${ip}api/v1/data/warning-logs/event?date=$date');
   String? token = await getToken(); // 假設 getToken() 是一個從本地存儲獲取 JWT token 的函數
@@ -1550,6 +1584,7 @@ Future<String> getEventWarningLogs(String date, Emergency emergency) async {
   }
 }
 
+//Get Behavioral Data
 Future<String> getBehavioralData(
     String deviceId, String date, VisualCharts visualCharts) async {
   date = formatDate(date);
@@ -1602,6 +1637,7 @@ Future<String> getBehavioralData(
   }
 }
 
+//Get Sleep Data
 Future<String> getSleepData(
     String deviceId, String date, VisualCharts visualCharts) async {
   date = formatDate(date);
@@ -1656,6 +1692,7 @@ Future<String> getSleepData(
   }
 }
 
+//Update Care Recipient跟前面的參數不同
 Future<String> updateCareRecipient2({
   required String name,
   required Map medicalHistory,
@@ -1737,6 +1774,7 @@ Future<String> updateCareRecipient2({
   }
 }
 
+//Get Emergency Contacts
 Future<String> getEmergencyContacts(EmergencyContact emergencyContact) async {
   // Retrieve the token from local storage
   String? token = await getToken();
@@ -1779,6 +1817,7 @@ Future<String> getEmergencyContacts(EmergencyContact emergencyContact) async {
   }
 }
 
+//Add Emergency Contact參數不同
 Future<String> addEmergencyContact2({
   required String name,
   required String countryCode,
@@ -1839,6 +1878,7 @@ Future<String> addEmergencyContact2({
   }
 }
 
+//Update Emergency Contact參數不同
 Future<String> updateEmergencyContact({
   required String contactId,
   required String name,
@@ -1902,6 +1942,7 @@ Future<String> updateEmergencyContact({
   }
 }
 
+//Delete Emergency Contact
 Future<String> deleteEmergencyContact(String contactId) async {
   // Retrieve the token from local storage
   String? token = await getToken();
@@ -1950,6 +1991,7 @@ Future<String> deleteEmergencyContact(String contactId) async {
   }
 }
 
+//Get User Follows
 Future<String> getUserFollows(DeviceInfo deviceInfo) async {
   // Retrieve the token from local storage
   String? token = await getToken();
@@ -1992,6 +2034,7 @@ Future<String> getUserFollows(DeviceInfo deviceInfo) async {
   }
 }
 
+//Send Family Verification Email
 Future<String> sendFamilyVerificationEmail(
     String email, DeviceInfo deviceInfo) async {
   // Retrieve the token from local storage
@@ -2039,6 +2082,7 @@ Future<String> sendFamilyVerificationEmail(
   }
 }
 
+//Add Family Member
 Future<String> addFamilyMember(
     String email, String verifyCode, DeviceInfo deviceInfo) async {
   // Retrieve the token from local storage
@@ -2088,6 +2132,7 @@ Future<String> addFamilyMember(
   }
 }
 
+//Update Family Member
 Future<String> updateFamilyMember(
     String followId, String familyName, DeviceInfo deviceInfo) async {
   // Retrieve the token from local storage
@@ -2145,6 +2190,7 @@ Future<String> updateFamilyMember(
   }
 }
 
+//Delete Family Member
 Future<String> deleteFamilyMember(
     String followId, DeviceInfo deviceInfo) async {
   // Retrieve the token from local storage
@@ -2195,6 +2241,7 @@ Future<String> deleteFamilyMember(
   }
 }
 
+//Get Family Member Devices
 Future<String> getFamilyMemberDevices(
     String followId, DeviceInfo deviceInfo) async {
   // Retrieve the token from local storage

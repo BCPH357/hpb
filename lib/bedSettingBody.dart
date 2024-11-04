@@ -19,6 +19,7 @@ import 'restfulApi.dart';
 import 'bedCompletePage.dart';
 import 'alertDialog.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+//畫定位點
 class PointsPainter extends CustomPainter {
   final List<Offset> points;
 
@@ -61,6 +62,7 @@ class _BedSettingState extends State<BedSetting> {
     Offset(200, 200),
     Offset(100, 200),
   ];
+  //取得目前四點座標
   List<Offset> getRelativePositions(double imageWidth, double imageHeight) {
     return points
         .map((point) => Offset(

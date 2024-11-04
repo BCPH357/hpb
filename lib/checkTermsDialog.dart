@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'loginPage.dart';
 
+//隱私權條款提示框
 class CheckTermsDialog extends StatelessWidget {
   final String term;
   const CheckTermsDialog({super.key, required this.term});

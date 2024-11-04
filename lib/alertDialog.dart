@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 import 'mult_provider.dart';
 import 'restfulApi.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+//http回傳有誤的提示框
 class HttpAlertDialog extends StatelessWidget {
   final String errorMessage;
   const HttpAlertDialog({super.key, required this.errorMessage});

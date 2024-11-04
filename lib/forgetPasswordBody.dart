@@ -132,6 +132,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
     setState(() {
       firstPress = true;
       isCountingDown = true;
+      //倒數60s
       countdownTime = 60;
     });
 

@@ -62,6 +62,7 @@ class _DatePickerWidgetState extends State<DatePickerWidget> {
     _selectedDate = DateTime.now().subtract(Duration(days: 1));
   }
 
+//跳出loading
   void showLoadingDialog() {
     showDialog(
       context: context,
@@ -84,7 +85,7 @@ class _DatePickerWidgetState extends State<DatePickerWidget> {
       },
     );
 
-    // 30秒後自動關閉對話框
+    // 3秒後自動關閉對話框
     Timer(Duration(seconds: 3), () {
       Navigator.of(context).pop(); // 關閉對話框
     });
@@ -169,6 +170,7 @@ class _DatePickerWidgetState extends State<DatePickerWidget> {
   }
 }
 
+//圓餅圖
 class VisualChartsPieChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -273,14 +275,7 @@ class DataImage extends StatelessWidget {
     ScreenUtil.init(context, designSize: Size(411, 890));
     final visualCharts = Provider.of<VisualCharts>(context, listen: true);
     // visualCharts.setVisualCharts();
-    print("!!!!!!!!!!!!!!!!!");
-    print(visualCharts.visualCharts);
-    print(visualCharts.firstColor);
-    print(visualCharts.secondColor);
-    print(visualCharts.visualChartsSleep);
-    print(visualCharts.firstColorSleep);
-    print(visualCharts.secondColorSleep);
-    print("@@@@@@@@@@@@@@");
+
     return Container(
       child: Column(
         children: [

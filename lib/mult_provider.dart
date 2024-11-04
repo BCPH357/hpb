@@ -3,6 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+//關於人員的全域狀態
 class PeopleInfo with ChangeNotifier {
   String _selfName = "";
   String _selfPhone = "";
@@ -31,6 +33,7 @@ class PeopleInfo with ChangeNotifier {
   String get dependentBloodType => _dependentBloodType;
   String get dependentNotes => _dependentNotes;
   Map get medicalHistory => _medicalHistory;
+
 
   setSelfPhone(String phone) {
     _selfPhone = phone;
@@ -86,6 +89,7 @@ class PeopleInfo with ChangeNotifier {
   }
 }
 
+//關於裝置, 床邊界圖, 家庭人員裝置首頁provider
 class DeviceInfo with ChangeNotifier {
   List _device = [];
   List _familyData = [];
@@ -230,6 +234,8 @@ class DeviceInfo with ChangeNotifier {
     notifyListeners();
   }
 
+
+//設定聲音燈光床
   setVoiceLightBed(Map voiceLightBed, int index) {
     _device[index]["lightStatus"] = voiceLightBed["lightStatus"];
     _device[index]["speakerStatus"] = voiceLightBed["speakerStatus"];
@@ -280,6 +286,7 @@ class DeviceInfo with ChangeNotifier {
     return "";
   }
 
+//家庭裝置資料
   setFamilyDevice(List familyDeviceInfo) {
     _familyDevice = [];
     for (int i = 0; i < familyDeviceInfo.length; i++) {
@@ -303,6 +310,7 @@ class DeviceInfo with ChangeNotifier {
     notifyListeners();
   }
 
+//個人裝置資料
   setDeviceInfo(List deviceInfo) {
     _device = [];
     for (int i = 0; i < deviceInfo.length; i++) {
@@ -350,6 +358,7 @@ class DeviceInfo with ChangeNotifier {
     notifyListeners();
   }
 
+//家庭人員資料
   setFamilyData(List familyData) {
     _familyData = [];
     // List<Map<String, dynamic>> tempFamilyData = [];
@@ -506,6 +515,7 @@ class DeviceInfo with ChangeNotifier {
   //   ];
   // }
 
+//根據api取得的值獲得圖路徑
   setImageHash(String hash) {
     Map imageHash = {
       "SOME_PEOPLE": "assets/icons/walking.png",
@@ -526,6 +536,7 @@ class DeviceInfo with ChangeNotifier {
   // }
 }
 
+//事件通知 警告
 class Emergency with ChangeNotifier {
   List _emergency = [];
   List _event = [];
@@ -681,6 +692,7 @@ class Emergency with ChangeNotifier {
   //   // notifyListeners();
   // }
 
+//hash根據api取得警告訊息
   setDeviceWarningHash(String key) {
     Map deviceWarningHash = {
       "FALL_DOWN": "跌倒警告",
@@ -697,6 +709,7 @@ class Emergency with ChangeNotifier {
     return deviceWarningHash.containsKey(key) ? deviceWarningHash[key] : key;
   }
 
+//設定警告
   setEmergencyWarningLogs(List date) {
     _emergency = [];
     for (int i = 0; i < date.length; i++) {
@@ -708,6 +721,7 @@ class Emergency with ChangeNotifier {
     }
   }
 
+//設定事件
   setEventWarningLogs(List date) {
     _event = [];
     for (int i = 0; i < date.length; i++) {
@@ -718,6 +732,7 @@ class Emergency with ChangeNotifier {
       ]);
     }
   }
+
 
   String formatDateString(String inputDate) {
     // 解析原始日期字符串
@@ -735,6 +750,7 @@ class Emergency with ChangeNotifier {
   }
 }
 
+//警急聯絡人資料
 class EmergencyContact with ChangeNotifier {
   List _emergencyContact = [];
   String _countryCode = '+1';
@@ -823,6 +839,8 @@ class EmergencyContact with ChangeNotifier {
   }
 }
 
+//faq相關provider
+
 class FaqInfo with ChangeNotifier {
   List _faq = [];
 
@@ -851,6 +869,7 @@ class FaqInfo with ChangeNotifier {
               "(1) 檢查裝置電源插頭。\n(2) 查看裝置左側指示燈，若紫燈閃爍超過2分鐘，檢查家中網路是否正常運作。\n(3) 請按裝置左側的重設鍵，重啟裝置，進入APP重新進行裝置配對流程。\n(4) 請將電源拔除，重新插上，進入APP重新進行裝置配對與Wi-Fi設定流程。"
         }
       ],
+      //注意question 4value為widget
       [
         {
           "question": "Q4.問題4: 床緣邊界設定取圖說明。如何判斷取圖正確？",
@@ -984,7 +1003,10 @@ class FaqInfo with ChangeNotifier {
   }
 }
 
+//資料分析provider
 class VisualCharts with ChangeNotifier {
+  //first代表上面那條
+  //second代表下面的
   Map _visualCharts = {
     "first": [0],
     "second": [0]
@@ -1113,6 +1135,7 @@ class VisualCharts with ChangeNotifier {
     notifyListeners();
   }
 
+//根據api回傳設定資料
   setCountAndTime(List data) {
     killBehavior();
     for (int i = 0; i < data.length; i++) {
@@ -1182,6 +1205,8 @@ class VisualCharts with ChangeNotifier {
   //   ];
   //   // notifyListeners();
   // }
+
+  //設定資料分析的上下兩個長條
   void setVisualCharts(List<dynamic> barData) {
     Map<String, List<num>> splitList(List<dynamic> input) {
       List<num> first = [];
@@ -1260,6 +1285,7 @@ class VisualCharts with ChangeNotifier {
     notifyListeners(); // 如果在Flutter中使用，需要通知聽眾更新
   }
 
+//設定睡眠資訊的上下兩個長條
   void setVisualChartsSleep(List<dynamic> barData) {
     Map<String, List<num>> splitList(List<dynamic> input) {
       List<num> first = [];

@@ -34,7 +34,7 @@ class SelectDeviceAlertDialog extends StatelessWidget {
           InkWell(
             onTap: () {
               // 这里可以定义点击时的逻辑
-              print('整個 Row 被點擊了');
+              
               Navigator.pop(context);
               Navigator.push(
                 context,
@@ -145,6 +145,7 @@ class _P1WifiAlertDialogState extends State<P1WifiAlertDialog> {
     _checkLocationServices();
   }
 
+//下面三個function gpt生的
   Future<void> _checkLocationServices() async {
     bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {

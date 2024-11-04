@@ -11,7 +11,7 @@ import 'package:provider/provider.dart';
 import 'restfulApi.dart';
 import 'alertDialog.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+//選擇國碼widget
 class CountryCodeDropdown extends StatefulWidget {
   @override
   _CountryCodeDropdownState createState() => _CountryCodeDropdownState();

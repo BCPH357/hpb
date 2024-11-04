@@ -1,16 +1,19 @@
-# hpb
+# Getting Started
 
-A new Flutter project.
+Flutter 3.24.1
+Dart 3.5.1
 
-## Getting Started
+step 1:
+根據官方文檔安裝flutter
 
-This project is a starting point for a Flutter application.
+step 2:
+clone專案
 
-A few resources to get you started if this is your first Flutter project:
+step 3:
+輸入flutter pub get
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+step 4:
+可能會根據設備要調整build.gradle
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+step 5:
+運行專案

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+//掃描qrcode
 class QRScanPage extends StatefulWidget {
   @override
   _QRScanPageState createState() => _QRScanPageState();

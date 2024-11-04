@@ -3,6 +3,7 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:hpb/chooseLanguagePage.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'addDevicePage.dart';
+//loading畫面
 class Loading extends StatefulWidget {
   @override
   _LoadingState createState() => _LoadingState();

@@ -125,6 +125,7 @@ class _AbnormalHistoryBodyState extends State<AbnormalHistoryBody> {
     super.dispose();
   }
 
+//控制畫面最底部<< < 1 2 3 > >>
   void _scrollToSelectedIndex(int index) {
     double screenWidth = MediaQuery.of(context).size.width;
     ScreenUtil.init(context, designSize: Size(411, 890));

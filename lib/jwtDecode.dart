@@ -28,6 +28,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 // }
 import 'dart:convert';
 
+//解碼jwttoken
 void checkTokenValidity(String token) async {
   // await saveToken(token);
   // 1. 分割 JWT 並取得 payload
@@ -79,12 +80,14 @@ Future<String?> getToken() async {
   return prefs.getString('jwtToken');
 }
 
+//自訂key value存到手機
 Future<void> saveToLocal(String key, String value) async {
   final SharedPreferences prefs = await SharedPreferences.getInstance();
   await prefs.setString(key, value);
   print('$key 已存储');
 }
 
+//根據key取得資料
 Future<String> getFromLocal(String key) async {
   final SharedPreferences prefs = await SharedPreferences.getInstance();
   return prefs.getString(key) ?? '';

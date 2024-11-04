@@ -498,11 +498,13 @@ class CountdownButton extends StatefulWidget {
 
 class _CountdownButtonState extends State<CountdownButton> {
   bool _isCountingDown = false;
+  //倒數60秒
   int _countdown = 60;
   Timer? _timer;
 
   void _startCountdown() async {
     final deviceInfo = Provider.of<DeviceInfo>(context, listen: false);
+    //要一起改
     if (_countdown == 60) {
       final result =  await sendFamilyVerificationEmail(
           deviceInfo.familyVerifyEmail, deviceInfo);
@@ -526,6 +528,7 @@ class _CountdownButtonState extends State<CountdownButton> {
         _timer?.cancel();
         setState(() {
           _isCountingDown = false;
+          //要一起改
           _countdown = 60;
         });
       }

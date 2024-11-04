@@ -38,11 +38,14 @@ import 'dependentInfoPage.dart';
 import 'accountDependentInfoPage.dart';
 import 'addDevicePage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+//檔案page結尾的是畫面上的topbar bottombar leftDrawer
+//檔案body結尾的是畫面主要內容
 
 void main() async {
   runApp(MyApp(homePage: await determineHomePage()));
 }
 
+//根據手機的內部記憶去選擇第一頁是首頁 登陸頁 或者選擇語言
 Future<Widget> determineHomePage() async {
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences prefs = await SharedPreferences.getInstance();

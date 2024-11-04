@@ -12,6 +12,7 @@ import 'accountSelfInfoPage.dart';
 import 'alertDialog.dart';
 import 'longText.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+//注意: 選單初始化內容會根據api的回傳
 class HorizontalScrollingCheckboxes extends StatefulWidget {
   @override
   _HorizontalScrollingCheckboxesState createState() =>
